@@ -4,10 +4,6 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
-app.all("*", (req, res) => {
-  res.status(404).json({ message: "Page not found" });
-});
-
 app.get("/", (req, res) => {
   return res.json({
     restaurant: {
@@ -453,6 +449,10 @@ app.get("/", (req, res) => {
       { name: "Couverts", meals: [] },
     ],
   });
+});
+
+app.all("*", (req, res) => {
+  res.status(404).json({ message: "Page not found" });
 });
 
 app.listen(process.env.PORT || 3200, () => {
